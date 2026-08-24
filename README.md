@@ -9,10 +9,14 @@ Check a single domain with full details:
 ./mail_dns.sh domain.com full
 ```
 
-Check All Locally Routed Domains
+To check all locally routed domains with full details:
 
-To check all domains listed in /etc/localdomains using the short format:
 ```
-for i in $(cat /etc/localdomains); do ./mail_dns.sh $i short; done
+./mail_dns.sh alldomains full
+./mail_dns.sh alldomains short
 ```
-This checks all domains on the server that are configured to use local mail routing.
+svg
+
+This checks all domains on the server that are configured to use local mail routing through /etc/localdomains.
+
+The alldomains option uses the same DKIM, SPF, and MX validation logic as a single-domain check, but automatically runs it against every locally routed domain.
