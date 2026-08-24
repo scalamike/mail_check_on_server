@@ -10,6 +10,37 @@ DKIM_SELECTOR="default"
 DOMAIN="$1"
 MODE="$2"
 
+
+########################################
+# ALL DOMAINS
+########################################
+
+if [ "$DOMAIN" = "alldomains" ]; then
+
+    if [ "$MODE" != "short" ] && [ "$MODE" != "full" ]; then
+        echo "Usage:"
+        echo "  $0 alldomains short"
+        echo "  $0 alldomains full"
+        exit 1
+    fi
+
+    while IFS= read -r domain; do
+        [ -z "$domain" ] && continue
+
+        "$0" "$domain" "$MODE"
+
+        if [ "$MODE" = "full" ]; then
+            echo
+        fi
+
+    done < /etc/localdomains
+
+    exit 0
+fi
+
+
+
+
 if [ -z "$DOMAIN" ] || [ -z "$MODE" ]; then
     echo "Usage:"
     echo "  $0 domain short"
