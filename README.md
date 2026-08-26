@@ -15,7 +15,6 @@ To check all locally routed domains with full details:
 ./mail_dns.sh alldomains full
 ./mail_dns.sh alldomains short
 ```
-svg
 
 This checks all domains on the server that are configured to use local mail routing through /etc/localdomains.
 
